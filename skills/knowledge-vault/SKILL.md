@@ -19,7 +19,7 @@ the end.
   this even when the owner does not ask.
 - Whenever the owner says "what do I know about", "have we done this before",
   "did I decide", "check my notes", "last time", "remember this", "add this to
-  the vault", or refers to a past project, person or decision as if you should
+  the vault", "anything here worth keeping?", or refers to a past project, person or decision as if you should
   already know it.
 - Whenever the owner corrects a fact ("that's wrong", "where did you get that",
   "I never said that").

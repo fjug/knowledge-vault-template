@@ -100,11 +100,15 @@ these situations.
 |---|---|
 | *"What do I know about X?"* · *"Did I decide this already?"* · *"Check my notes first."* | The assistant reads `index.md`, searches, opens two or three notes and tells you what it found, with file paths, before doing the work. |
 | *"Remember this."* · *"Add this to the vault."* | It files the conclusion as a topic, project or person note, registers it, links it and logs the change. When unsure where it belongs, it goes to `inbox/` and the assistant says so. |
-| Nothing: you just finished something | It should offer to capture a settled decision, a recipe that worked, or a dead end. If it does not, ask: *"Anything here worth keeping?"* |
+| *"Anything here worth keeping?"* | It looks back over the conversation and proposes what to file: a settled decision, a recipe that worked, a dead end. You choose; it files. |
 | *"That's wrong: it was Y, not X."* | It fixes the fact where it came from (a note, its own memory, a skill) and tells you where that was. |
 | *"How has my thinking on X changed?"* | `idea-lineage` traces the idea through the notes and their history: first mention, best version, current version, reversals, abandoned branches. |
 | *"Triage my inbox."* | It goes through `inbox/` with you, one note at a time: promote, merge or archive. |
 | *"Check the vault's health."* | It runs `bin/vault-doctor.sh` and fixes what you agree to. |
+
+You do not always have to ask. When a conversation settles something worth
+keeping, the assistant should offer to file it on its own. If it does not,
+ask *"Anything here worth keeping?"*
 
 **Habits that make it work:**
 
