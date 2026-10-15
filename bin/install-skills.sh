@@ -61,4 +61,4 @@ done
 echo
 echo "Claude Code and Codex on this machine now see the skills."
 echo "For the Claude apps, upload each ZIP in dist/ under Customize > Skills."
-echo "See README.md, 'Install the skills', for ChatGPT and other assistants."
+echo "See README.md, 'Also using the Claude apps or ChatGPT?', for the uploads."

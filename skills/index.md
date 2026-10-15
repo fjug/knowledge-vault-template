@@ -16,4 +16,4 @@ sh bin/install-skills.sh
 It links the skills into `~/.claude/skills` (Claude Code) and `~/.agents/skills`
 (Codex) and packages ZIPs in `dist/` for upload to the Claude apps and
 ChatGPT. Uploaded copies do not follow the vault: re-run the script and upload
-again after a skill changes. Details in the README, **Install the skills**.
+again after a skill changes. Details in the README, **The skills**.

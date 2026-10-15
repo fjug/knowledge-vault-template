@@ -14,7 +14,7 @@ those came from. Every note passes one test: would you otherwise have to work
 this out again in six months?
 
 **Contents:** [Set up your vault](#set-up-your-vault) ·
-[Install the skills](#install-the-skills) ·
+[The skills](#the-skills) ·
 [Using it day to day](#using-it-day-to-day) ·
 [What is inside](#what-is-inside) ·
 [Questions](#questions)
@@ -40,19 +40,20 @@ Setup takes about fifteen minutes, most of it a conversation.
    `vault` folder and say:
    > Read SETUP.md and set this vault up for me.
 
-   The assistant interviews you (who you are, how you write, what the vault is
-   for, your starting tags), fills in `OWNER.md`, configures the machine,
-   installs the skills on it and makes the first commit.
+   The first time, the assistant interviews you (who you are, how you write,
+   what the vault is for, your starting tags), fills in `OWNER.md`, configures
+   the computer, installs the skills and makes the first commit.
 4. **Check on GitHub.** Your repository page shows a green tick next to the
    first commit once the health check has run. A red cross means the check
    found something; click it to read the report.
 
-On a second computer, clone the same repository and run `sh bin/setup-machine.sh`
-and `sh bin/install-skills.sh` there.
+**More than one computer?** Do steps 2 and 3 on each. The assistant sees that
+the vault is already set up, skips the interview, and only prepares that
+computer. Your notes stay in step through GitHub.
 
 ---
 
-## Install the skills
+## The skills
 
 The vault ships two skills: short instruction files that teach an assistant
 what to do and when.
@@ -63,34 +64,30 @@ what to do and when.
 - **`idea-lineage`**: trace how one of your ideas changed over time, from the
   notes and their git history.
 
-The rules themselves live in `AGENTS.md` inside the vault. The skills make sure
-an assistant reaches for the vault at the right moments and reads those rules.
+**You do not need to install anything for Claude Code or Codex.** Setup does it
+on every computer it runs on, so both assistants use the vault from any folder
+you work in. The rules themselves live in `AGENTS.md`; the skills make sure an
+assistant reaches for the vault at the right moments and reads those rules.
 
-Run this once on every computer that holds a clone (setup does it for you on
-the first one):
+### Also using the Claude apps or ChatGPT?
 
-```bash
-sh bin/install-skills.sh
-```
+Apps on the web and on your phone cannot read your computer's folders, so each
+needs the skills uploaded once, by you. Setup leaves them ready as ZIP files in
+your vault's `dist/` folder.
 
-It links the skills into the folders Claude Code and Codex read, and packages
-each skill as a ZIP in `dist/` for the apps that take an upload.
-
-| Assistant | How it gets the skills | How it reaches the vault |
+| App | Upload | How it reaches the vault |
 |---|---|---|
-| **Claude Code** | Automatic after `install-skills.sh` (`~/.claude/skills`). Also reads `CLAUDE.md` when started in the vault. | Directly, on the computer. Full read and write. |
-| **Codex** (CLI, IDE, ChatGPT desktop app) | Automatic after `install-skills.sh` (`~/.agents/skills`). Reads `AGENTS.md` when started in the vault. | Directly, on the computer. Full read and write. |
-| **Claude apps** (web, desktop, mobile) | Upload each ZIP from `dist/` under **Customize > Skills**: press **+**, then **Create skill**, then **Upload a skill**. Code execution must be on. On Team and Enterprise plans an owner may need to allow this, or can install the skills for everyone. | With the desktop app and your computer linked: directly. Otherwise through a GitHub connector, if your plan has one. |
+| **Claude apps** (web, desktop, mobile) | Under **Customize > Skills**, press **+**, then **Create skill**, then **Upload a skill**, and choose a ZIP from `dist/`. Repeat for the second ZIP. Code execution must be on. On Team and Enterprise plans an owner may need to allow this, or can install the skills for everyone. | With the desktop app and your computer linked: directly. Otherwise through a GitHub connector, if your plan has one. |
 | **ChatGPT** | Skills are in beta and must be enabled for your workspace. In a new chat, say *"Build me a skill from this file"*, paste the contents of a `SKILL.md`, then press **Install**. Use it with `@knowledge-vault`. | Through the GitHub app, mostly read-only. Anything new comes back as files for your `inbox/`. |
-| **Anything else** | Point it at `AGENTS.md`, which most coding assistants read by convention. | Whatever file access it has. |
+| **Anything else** | Nothing to upload: point it at `AGENTS.md`, which most coding assistants read by convention. | Whatever file access it has. |
 
-Uploaded copies do not follow the vault. When a skill changes, run
-`install-skills.sh` again and upload the new ZIPs. Menus change; if one has
-moved, the assistant's own help pages have the current path.
+Uploaded copies do not follow the vault. If a skill ever changes, run
+`sh bin/install-skills.sh` to rebuild the ZIPs and upload them again. Menus
+change; if one has moved, the app's own help pages have the current path.
 
-**When the assistant cannot reach your files** (a phone chat without a
-connector, say), the skill still works. It produces complete notes as files
-for you to drop into `inbox/`, and an assistant with access files them later.
+**When an app cannot reach your files** (a phone chat without a connector, say),
+the skill still works. It produces complete notes as files for you to drop into
+`inbox/`, and an assistant with access files them later.
 
 ---
 
