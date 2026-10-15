@@ -1,0 +1,39 @@
+name: vault-doctor
+
+# Runs bin/vault-doctor.sh on every push, from any machine or connector, and
+# once a week so that passed `revisit:` dates surface without a push.
+# A red cross means findings; the report is on the run's summary page.
+# See AGENTS.md section 6 ("Health checks").
+
+on:
+  push:
+  schedule:
+    - cron: "17 6 * * 1"   # Mondays 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  doctor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # the range checks read earlier commits
+
+      - name: Run the vault doctor
+        shell: bash
+        run: |
+          set +e
+          if [ "${{ github.event_name }}" = push ]; then
+            sh bin/vault-doctor.sh --strict \
+              --range "${{ github.event.before }}..${{ github.sha }}" > report.txt 2>&1
+          else
+            sh bin/vault-doctor.sh --strict > report.txt 2>&1
+          fi
+          status=$?
+          cat report.txt
+          { echo '```'; cat report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit $status

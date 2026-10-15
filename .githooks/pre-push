@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# pre-push hook for the vault.
+#
+# Confidential notes are the owner's own professional material and are allowed to
+# reach the trusted private origin. This hook does NOT block them. It prints a
+# warning listing the confidential notes in the push, as a statement of care.
+# See AGENTS.md section 6 ("Person notes default to sensitivity: confidential").
+#
+# The hard guarantee for third-party data (partners, children) is not here: it
+# is `.gitignore`, which keeps `private/` out of the repository entirely.
+#
+# It then runs bin/vault-doctor.sh over the range being pushed, which also
+# checks that every changed note has a log.md line and that no timeline entry
+# was edited. Also a warning, never a block. See AGENTS.md section 6
+# ("Health checks").
+#
+# Activated per machine with: git config core.hooksPath .githooks
+
+zero='0000000000000000000000000000000000000000'
+confidential=''
+ranges=''
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ "$local_sha" = "$zero" ] && continue          # branch deletion, nothing to scan
+  ranges="$ranges $remote_sha..$local_sha"
+
+  if [ "$remote_sha" = "$zero" ]; then
+    files=$(git diff-tree --no-commit-id --name-only -r "$local_sha")
+  else
+    files=$(git diff --name-only "$remote_sha" "$local_sha")
+  fi
+
+  for f in $files; do
+    case "$f" in *.md) ;; *) continue ;; esac
+    [ -f "$f" ] || continue
+    if head -20 "$f" | grep -qi '^sensitivity:[[:space:]]*confidential'; then
+      confidential="$confidential  $f
+"
+    fi
+  done
+done
+
+if [ -n "$confidential" ]; then
+  echo "pre-push: this push carries confidential notes to ${2:-the remote}:" >&2
+  printf '%s' "$confidential" >&2
+  echo "Allowed; the private origin is trusted. Warning only, not a block." >&2
+fi
+
+if [ -f bin/vault-doctor.sh ]; then
+  for r in $ranges; do
+    sh bin/vault-doctor.sh --range "$r" | sed 's/^/pre-push: /' >&2
+  done
+fi
+
+exit 0

@@ -1,0 +1,6 @@
+.obsidian/
+.DS_Store
+*/.DS_Store
+
+# Third-party personal data (partners, children). Never leaves the machine.
+private/
