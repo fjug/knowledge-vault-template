@@ -4,3 +4,6 @@
 
 # Third-party personal data (partners, children). Never leaves the machine.
 private/
+
+# Skill ZIPs built by bin/install-skills.sh
+dist/

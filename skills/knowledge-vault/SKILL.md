@@ -1,19 +1,6 @@
 ---
 name: knowledge-vault
-description: >-
-  Read from and write to the owner's personal Markdown knowledge vault (see
-  OWNER.md in the vault), so that work is grounded in what they have already figured out and does not
-  get re-derived from scratch. Use this skill at the START of any substantive task
-  (research, drafting, planning, debugging, decisions, purchases, institutional
-  navigation) to check what the vault already knows, and at the END to capture
-  anything worth keeping. Trigger it whenever the user says "what do I know
-  about", "have we done this before", "did I decide", "remember this", "add this
-  to the vault", "check my notes", "last time", or refers to a past project,
-  collaborator, or decision as if you should already know it. Also trigger it
-  proactively when a conversation produces a reusable conclusion, a settled
-  decision, a working recipe, or a lesson learned, even if the user does not ask
-  you to save anything. Use it too when the user corrects a fact ("that's wrong",
-  "where did you get that", "I never said that"), to fix the error at its source.
+description: "Use the owner's Markdown knowledge vault: check it before substantive work, file durable conclusions after, and fix corrected facts at the source they came from."
 ---
 
 # Knowledge vault
@@ -21,6 +8,22 @@ description: >-
 A Markdown knowledge vault owned by the person described in its `OWNER.md`.
 Three operations: **consult**, **capture**, **maintain**. Most sessions use consult at the start and capture at
 the end.
+
+## When to use this skill
+
+- At the **start** of any substantive task (research, drafting, planning,
+  debugging, decisions, purchases, institutional questions), to check what the
+  vault already knows.
+- At the **end**, or whenever a conversation produces something durable: a
+  conclusion, a decision, a working recipe, a dead end, a lesson learned. Do
+  this even when the owner does not ask.
+- Whenever the owner says "what do I know about", "have we done this before",
+  "did I decide", "check my notes", "last time", "remember this", "add this to
+  the vault", or refers to a past project, person or decision as if you should
+  already know it.
+- Whenever the owner corrects a fact ("that's wrong", "where did you get that",
+  "I never said that").
+- When asked to check the vault's health or triage its inbox.
 
 ## Locating the vault
 
@@ -170,6 +173,14 @@ gets corrected state and, in a project or person note, a dated correction entry;
 a memory or instruction gets corrected in place; a fact the agent made up gets
 named, with the partial signals that produced it. Report in a line or two what
 you found and where you fixed it. The full table is in `AGENTS.md` section 8.
+
+### Triaging the inbox
+
+When the owner asks to triage, go through `inbox/` one note at a time, oldest
+first. For each, propose one move and wait for the answer: promote it (to
+`topics/`, `projects/`, `people/` or `institutional/`, registered and linked),
+merge it into an existing note, or archive it with a banner. Keep `inbox/index.md`
+in step, and log the session in one line.
 
 ### Scope
 

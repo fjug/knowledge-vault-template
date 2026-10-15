@@ -1,15 +1,6 @@
 ---
 name: idea-lineage
-description: >-
-  Trace how one of the owner's ideas has changed over time, using the
-  knowledge vault and its git history: first appearance, best
-  articulation, current version, reversals, contradictions and abandoned
-  branches, each backed by a dated citation. Read-only. Use when the owner asks
-  "how has my thinking on X changed", "where did this idea come from", "what is
-  my current version of X", "trace the lineage of", "when did I drop", or
-  before writing about an idea they have worked on across several notes. Not for
-  mapping a whole field (use the topic notes) or for a project's decisions
-  (read its timeline).
+description: "Trace how one of the owner's ideas changed over time, from the knowledge vault and its git history: first mention, best version, current version, reversals, dead branches."
 ---
 
 # Idea lineage
@@ -21,6 +12,14 @@ with a date. Together they are a trajectory record of how the thinking moved.
 
 Read `AGENTS.md` first, as for any vault work. This skill writes nothing unless
 the owner asks for the result to be filed.
+
+## When to use this skill
+
+When the owner asks "how has my thinking on X changed", "where did this idea
+come from", "what is my current version of X", "trace the lineage of", or "when
+did I drop", and before writing about an idea they have worked on across
+several notes. Not for mapping a whole field (use the topic notes) or for a
+project's decisions (read its timeline).
 
 ## 1. Pin the idea
 

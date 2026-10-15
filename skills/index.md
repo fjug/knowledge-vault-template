@@ -7,14 +7,13 @@ Agent skills that live with the vault so they are versioned alongside it.
 - [idea-lineage](idea-lineage/SKILL.md) — traces how one of the owner's ideas
   has changed, from the vault and its git history. Read-only.
 
-Install them on every machine that holds a clone (`SETUP.md` step 5):
+Install them on every machine that holds a clone:
 
 ```bash
-for s in knowledge-vault idea-lineage; do
-  ln -sfn "$PWD/skills/$s" ~/.claude/skills/$s
-  ln -sfn "$PWD/skills/$s" ~/.codex/skills/$s
-done
+sh bin/install-skills.sh
 ```
 
-Copies uploaded to claude.ai are separate and do not follow the vault. Update
-them from the folders here when a skill changes.
+It links the skills into `~/.claude/skills` (Claude Code) and `~/.agents/skills`
+(Codex) and packages ZIPs in `dist/` for upload to the Claude apps and
+ChatGPT. Uploaded copies do not follow the vault: re-run the script and upload
+again after a skill changes. Details in the README, **Install the skills**.

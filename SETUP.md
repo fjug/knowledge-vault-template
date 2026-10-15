@@ -71,20 +71,16 @@ creates the ignored `private/` area. The doctor should report the vault clean.
 
 ## 5. Install the skills
 
-The two skills in `skills/` teach any agent to use the vault. Link them where
-the owner's agents look for skills, on every machine that holds a clone:
-
 ```bash
-for s in knowledge-vault idea-lineage; do
-  mkdir -p ~/.claude/skills ~/.codex/skills
-  ln -sfn "$PWD/skills/$s" ~/.claude/skills/$s
-  ln -sfn "$PWD/skills/$s" ~/.codex/skills/$s
-done
+sh bin/install-skills.sh
 ```
 
-For claude.ai (web, desktop and phone), the owner uploads each skill folder
-under Settings, or their organisation installs them for everyone. Tell them
-which route applies; do not guess at menu paths.
+This links both skills into the folders Claude Code (`~/.claude/skills`) and
+Codex (`~/.agents/skills`) read, so those two see them at once, and packages
+each skill as a ZIP in `dist/` for the apps that take an upload. Then walk the
+owner through the README section **Install the skills** for the assistants they
+use beyond this machine: the Claude apps, ChatGPT, and each other computer that
+holds a clone. Read that section to them rather than guessing at menus.
 
 ## 6. First commit
 
@@ -103,4 +99,5 @@ repository; they usually are by default).
 Tell the owner, in a few lines: where the vault is, what the skills do, that
 the first useful thing is to ask an agent to capture something they already
 know well, and that `inbox/` is where anything uncertain lands for them to
-triage. Then delete nothing: leave this file in place for the next machine.
+triage. Point them to the README section **Using it day to day**. Then delete
+nothing: leave this file in place for the next machine.
